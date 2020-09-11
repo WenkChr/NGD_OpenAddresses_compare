@@ -35,7 +35,7 @@ for row in points_df.itertuples(): # Move leading W or E, etc to end of string i
         # Correct address inconsistencies
         if ' AV ' in street:
             street = street.replace(' AV ', ' AVE ')
-        if street.endswith(' CRESCENT'):
+        if ' CRESCENT' in street:
             street = street.replace('CRESCENT', 'CRES')
         
         # Fix directional inconsistencies
@@ -55,11 +55,11 @@ for UID in points_df['BB_UID'].unique().tolist():
     for street in UID_records_df['STREET'].unique().tolist():
         street_df = UID_records_df.loc[UID_records_df['STREET'] == street]
         out_ranges_df.loc[len(out_ranges_df)] = [UID, 
-                                                street_df.NUMBER.int.max(), 
-                                                street_df.NUMBER.int.min(), 
+                                                street_df.NUMBER.max(), 
+                                                street_df.NUMBER.min(), 
                                                 street]
 
 print(out_ranges_df.head)
-out_ranges_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'test.csv'), index= False)
+out_ranges_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'testBB.csv'), index= False)
 
 print('DONE!')
