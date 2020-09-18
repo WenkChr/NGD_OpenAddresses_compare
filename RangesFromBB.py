@@ -56,7 +56,7 @@ def RangeCompareMatcher(AF_VAL, AT_VAL, OA_MAX, OA_MIN, side):
     vals =[AF_VAL, AT_VAL, OA_MIN, OA_MAX]
     if AF_VAL > AT_VAL:
         # Then AF pairs with min and AT pairs with max
-        vals = [At_VAL, AF_VAL, OA_MIN, OA_MAX]
+        vals = [AT_VAL, AF_VAL, OA_MIN, OA_MAX]
 
     NGD_Range = int(vals[0]) - int(vals[1])
     OA_Range = int(vals[2]) - int(vals[3])
