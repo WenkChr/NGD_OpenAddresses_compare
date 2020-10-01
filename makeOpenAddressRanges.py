@@ -64,5 +64,4 @@ for side in ['L', 'R']:
 
     print(out_ranges_df.head)
     out_ranges_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'test{side}.csv'), index= False)
-
 print('Done!')

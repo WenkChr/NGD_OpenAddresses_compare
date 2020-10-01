@@ -118,6 +118,7 @@ for row in points_df.itertuples(): # Move leading W or E, etc to end of string i
             index0 = street.split(' ')[0] + ' '
             street = street.replace(index0, '')
             street = street + ' ' + index0.strip(' ')
+        
         points_df.at[row.Index, 'STREET'] = street
 
 print('Creating ranges')
@@ -215,4 +216,5 @@ for side in ['L', 'R']:
     out_df['Range_Match_Type'] =  out_df.apply(lambda row: RangeCompareMatcher(row[f'AF{side}_VAL'], row[f'AT{side}_VAL'], row.Max_Address, row.Min_Address, side), axis=1)
     out_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'testBB_{side}.csv'), index= False)
     reject_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'testBB_{side}_rejects.csv'), index= False)
+
 print('DONE!')
