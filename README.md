@@ -22,6 +22,6 @@ The process runs in a couple of steps:
 
 6.) The matched and reject rows are then compiled into seperate dataframes and null values are replaced with 0's for querying.
 
-7.) The dataframes of matches and rejects are then exported.
+7.) The dataframes of matches and rejects are then exported as csv's.
 
 There is also a makeOpenAddressRanges.py file in the repo this script makes the ranges using a single sided buffer to select the points that fall within the range. This process is not quite as presise as the BB based process as it sometimes includes points that are not in the BB or might miss points in the BB outside of the buffer. But the flip side is that the segment might show a more accurate view of the address range covered by the line segment. The choice of methodology used is at the users discretion.
