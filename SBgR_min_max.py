@@ -45,7 +45,7 @@ SBgR_df['ST_NAME'] = SBgR_df['ST_NAME'].str.upper()
 #Loop over sides to get ranges
 for side in ['L', 'R']:
     # Side outputs
-    out_df_columns = ['NGD_UID','BF_UID', 'MIN', 'MAX', 'SBgR_Street_Name', f'NGD_STR_ID_{side}', f'AF{side}_VAL', f'AF{side}_SRC', f'AT{side}_VAL', f'AT{side}_SRC', f'STR_LABEL_NME_{side}', 'Match_Type']
+    out_df_columns = ['NGD_UID','BF_UID', 'MIN', 'MAX', 'SBgR_Street_Name', f'NGD_STR_ID_{side}', f'AF{side}_VAL', f'AF{side}_SRC', f'AT{side}_VAL', f'AT{side}_SRC', f'STR_NME{side}', f'STR_TYP_{side}']
     out_df_rows = []
     rejects_rows = []
     # NGD_AL DF setup and selection vars
@@ -69,14 +69,14 @@ for side in ['L', 'R']:
                         bfuid, #BF_UID
                         UID_ranges_df.iloc[0]['MIN'], # MIN        
                         UID_ranges_df.iloc[0]['MAX'], # MAX
-                        UID_ranges_df.iloc[0]['ST_NAME'], # OA_Street_Name
+                        UID_ranges_df.iloc[0]['ST_NAME'], # Street_Name
                         NGD_AL_df.iloc[Nrow.Index][f'NGD_STR_UID_{side}'], # NGD_STR_UID
                         NGD_AL_df.iloc[Nrow.Index][f'AF{side}_VAL'], # AF VAL
                         NGD_AL_df.iloc[Nrow.Index][f'AF{side}_SRC'], # AF SRC
                         NGD_AL_df.iloc[Nrow.Index][f'AT{side}_VAL'], # AT Val
                         NGD_AL_df.iloc[Nrow.Index][f'AT{side}_SRC'], # AT SRC
-                        Nrow.STR_LABEL_NME, # STR_LABEL_NME 
-                        'MATCH'] # Street name match type 
+                        Nrow.STR_NME, # STR_LABEL_NME 
+                        Nrow.STR_TYP]
             out_df_rows.append(row)
             continue
         # if you get to this point then these records don't have a match via the current methods
@@ -93,8 +93,8 @@ for side in ['L', 'R']:
                             NGD_AL_df.iloc[Nrow.Index][f'AF{side}_SRC'], # AF SRC
                             NGD_AL_df.iloc[Nrow.Index][f'AT{side}_VAL'], # AT Val
                             NGD_AL_df.iloc[Nrow.Index][f'AT{side}_SRC'], # AT SRC
-                            Nrow.STR_LABEL_NME, # STR_LABEL_NME 
-                            ] 
+                            Nrow.STR_NME, # STR_LABEL_NME 
+                            Nrow.STR_TYP] 
             rejects_rows.append(row)
     print(f"Final output count for {side}: Matches- {len(out_df_rows)} Rejects- {len(rejects_rows)}")
     out_df = pd.DataFrame(out_df_rows, columns= out_df_columns)
