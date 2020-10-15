@@ -138,7 +138,7 @@ out_ranges_df['S_NAME_ONLY'] = out_ranges_df.Street_Name.str.split().str.get(0)
 # Compare BB ranges to the NGD A ranges
 for side in ['L', 'R']:
     # Side outputs
-    out_df_columns = ['NGD_UID','BB_UID', 'Max_Address', 'Min_Address', 'OA_Street_Name', f'NGD_STR_ID_{side}', f'AF{side}_VAL', f'AF{side}_SRC', f'AT{side}_VAL', f'AT{side}_SRC', f'STR_LABEL_NME_{side}', 'Match_Type']
+    out_df_columns = ['NGD_UID','BB_UID', 'Max_Address', 'Min_Address', 'Street_Name', f'NGD_STR_ID_{side}', f'AF{side}_VAL', f'AF{side}_SRC', f'AT{side}_VAL', f'AT{side}_SRC', f'STR_LABEL_NME_{side}', 'Match_Type']
     out_df_rows = []
     rejects_rows = []
     output_counts = {'FULL': 0, 'PARTIAL' : 0, 'RATIO' : 0}
@@ -214,7 +214,7 @@ for side in ['L', 'R']:
     out_df[f'AT{side}_VAL'] = out_df[f'AT{side}_VAL'].fillna(0)
     # Calculate match type var
     out_df['Range_Match_Type'] =  out_df.apply(lambda row: RangeCompareMatcher(row[f'AF{side}_VAL'], row[f'AT{side}_VAL'], row.Max_Address, row.Min_Address, side), axis=1)
-    out_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'testBB_{side}.csv'), index= False)
+    out_df.to_csv(os.path.join(os.path.join(r'H:\NGD_OpenAddresses_compare', f'testOABB{side}.csv')), index= False)
     reject_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'testBB_{side}_rejects.csv'), index= False)
 
 print('DONE!')
