@@ -62,6 +62,5 @@ for side in ['L', 'R']:
                                                 UID_records_df.STR_LABEL_NME.iloc[0], 
                                                 UID_records_df[f'NGD_STR_UID_{side}'].iloc[0]]
 
-    print(out_ranges_df.head)
-    out_ranges_df.to_csv(os.path.join(r'H:\NGD_A_Complete_Ranges', f'test{side}.csv'), index= False)
+    out_ranges_df.to_csv(os.path.join(r'H:\NGD_OpenAddresses_compare', f'testOABB{side}.csv'), index= False)
 print('Done!')
